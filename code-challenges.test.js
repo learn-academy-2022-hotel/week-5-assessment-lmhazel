@@ -99,7 +99,7 @@ fruitOrganizer(letterA)
 //Pseudo Code:
 //Input: an array of 5 numbers
 //Output: true or false
-//Function: The function called fullHouse which assesses if the index includes a pair using a for loop function called onePair. This function puts the array in ascending order in order to iterate through the array and see if at the index, the variable right after matches the variable that the function is currently assessing. If it does match then that would be a pair and the function would add an increment to the variable tallyPairs. At the end, the function would see how many pairs are found via tallyPairs. However, I'm not sure how to not account for the three of a kind variables in an array nor do I understand how to create a function that would count three of a kind. 
+//Function: The function called fullHouse sorts the array in ascending order and then uses a conditional statement that returns a true if the array at the 0th and the first index equal each other and the array at the 0th and 2nd equal each other and the array at the 3rd and the 4th equal each other as well as return true if the array at the 0th and the 1st equal each other and the array at the 2nd and 3rd index equal each other and the 2nd and 4th index equal each other. If none of the prior conditions are met, the function will return false.
 
 const hand1 = [5, 5, 5, 3, 3]
 // Expected output: true
@@ -112,24 +112,26 @@ const hand4 = [7, 2, 7, 2, 7]
 
 describe("fullHouse", () => {
     it("returns true or false based on if the array is a full house", () => {
-        expect(fullHouse(hand1)).toEqual("true")
-        expect(fullHouse(hand2)).toEqual("true")
-        expect(fullHouse(hand3)).toEqual("false")
-        expect(fullHouse(hand4)).toEqual("true")
+        expect(fullHouse(hand1)).toEqual(true)
+        expect(fullHouse(hand2)).toEqual(true)
+        expect(fullHouse(hand3)).toEqual(false)
+        expect(fullHouse(hand4)).toEqual(true)
     })
 })
 
 // b) Create the function that makes the test pass.
 
-const onePair = (array) => {
-    let sortedArray = array.sort((a, b) => a - b)
-    let tallyPairs = 0
-    for(let i = 0; i < array.length; i++){
-        if ([i] === [i + 1]) {
-            tallyPairs + 1
-        } else {tallyPairs + 0}
+const fullHouse = (array) => {
+    array.sort()
+    
+    if(array[0] === array[1] && array[0] === array[2] && array[3] === array[4]) {
+        return true
+    } else if(array[0] === array[1] && array[2] === array[3] && array[2] === array[4]){
+        return true
+    } else {
+        return false
     }
-    console.log(tallyPairs)
 }
-onePair(hand1)
+
+fullHouse(hand1)
 
